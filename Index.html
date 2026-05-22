@@ -1,0 +1,293 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display+SC:wght@400;700&display=swap');
+
+        :root {
+            --dark-green: #0A3323;
+            --moss-green: #839958;
+            --beige: #F7F4D5;
+            --rosy-brown: #D3968C;
+            --midnight: #105666;
+            --soft-white: #fdfdfb;
+        }
+
+        body {
+            background-color: var(--beige);
+            font-family: 'Libre Baskerville', serif;
+            color: var(--dark-green);
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .site-wrapper {
+            max-width: 900px;
+            width: 100%;
+            background: var(--soft-white);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(131, 153, 88, 0.2);
+        }
+
+        .logo { font-family: 'Playfair Display SC', serif; font-size: 1.2rem; letter-spacing: 1px; font-weight: bold; }
+
+        .hero {
+            background-color: var(--moss-green);
+            color: var(--beige);
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .hero h1 { 
+            font-family: 'Playfair Display SC', serif; 
+            font-size: 1.6rem; 
+            margin: 0; 
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .hero p { font-size: 1.1rem; opacity: 0.9; margin: 15px 0; font-style: italic; }
+        
+        .welcome-box { padding: 40px; text-align: center; background: #fff; }
+        .welcome-box p { max-width: 750px; margin: 0 auto; color: #444; line-height: 1.7; font-size: 0.95rem; text-align: justify; }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px;
+            padding: 40px;
+            background: #f9f8f0;
+        }
+
+        .calc-form { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .input-group { margin-bottom: 18px; }
+        label { font-size: 0.85rem; font-weight: bold; color: var(--moss-green); display: block; margin-bottom: 6px; }
+        
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .btn-calc-action {
+            background: var(--rosy-brown);
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Playfair Display SC', serif;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        
+        .btn-calc-action:hover { background: var(--midnight); }
+
+        .calc-visual {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #eee;
+        }
+
+        .tree-icon { font-size: 75px; margin-bottom: 10px; }
+        .score-number { font-size: 2.8rem; color: var(--rosy-brown); font-weight: bold; margin: 5px 0; }
+
+        /* --- MODIFICACIÓN: SECCIÓN OCULTA POR DEFECTO CON ANIMACIÓN --- */
+        .tips-section { 
+            padding: 50px 40px; 
+            background: white; 
+            display: none; 
+            animation: aparecerSuave 0.6s ease-out forwards;
+        }
+
+        @keyframes aparecerSuave {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tips-title { font-family: 'Playfair Display SC', serif; text-align: center; margin-bottom: 40px; font-size: 1.5rem; color: var(--dark-green); }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .tip-card { padding: 25px; border-radius: 12px; color: white; min-height: 120px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+        .tip-card strong { font-size: 1.1rem; margin-bottom: 8px; display: block; font-family: 'Playfair Display SC', serif; }
+        .tip-card small { font-size: 0.85rem; line-height: 1.4; opacity: 0.95; }
+
+        .tip-1 { background: var(--moss-green); }
+        .tip-2 { background: var(--beige); color: var(--dark-green); border: 1.5px solid var(--moss-green); }
+        .tip-3 { background: var(--rosy-brown); }
+        .tip-4 { background: var(--midnight); }
+
+        footer { background: var(--dark-green); color: var(--beige); text-align: center; padding: 25px; font-size: 0.75rem; letter-spacing: 1px; }
+
+    </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+    <nav>
+        <div class="logo">TICKET-ÁRBOL</div>
+        <div class="nav-links">PROYECTO AMBIENTAL</div>
+    </nav>
+
+    <section class="hero">
+        <h1>Ticket-Árbol: Integración del Arte Escénico y la Reforestación como Estrategia Sostenibilidad Ambiental</h1>
+        <p>Tu viaje es un árbol: Calcula y Cultiva Tu Huella</p>
+    </section>
+
+    <div class="welcome-box">
+        <p>
+            ¡Hola! Soy Antonia Chamorro Murillas estudiante de grado 11 del <strong>Gimnasio Fontana</strong> y protagonista del musical <strong>Unlimited</strong>
+            "Ticket-Árbol" es una iniciativa que busca unir el arte y el cuidado del medio ambiente. A través de este sitio, 
+            puedes medir el impacto de tus desplazamientos diarios. La idea es sencilla: recolectamos información sobre tus hábitos de transporte 
+            para estimar tu huella de CO₂ y transformarla en una oportunidad de reforestación. 
+            El arte no solo emociona, también nos inspira a cuidar el planeta con acciones reales.
+        </p>
+    </div>
+
+    <section class="calc-grid">
+        <div class="calc-form">
+            <h3 style="font-family: 'Playfair Display SC'; color: var(--dark-green); margin-top: 0;">TU HUELLA DIARIA</h3>
+            
+            <div class="input-group">
+                <label>1. ¿Cómo te mueves habitualmente?</label>
+                <select id="v1">
+                    <option value="0.19">En mi carro (a gasolina)</option>
+                    <option value="0.10">En el carro de un amigo (Carpooling)</option>
+                    <option value="0.06">Bus de colegio o público</option>
+                    <option value="0.00">Bici o a pie</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>2. Kilómetros recorridos al día (aproximado)</label>
+                <input type="number" id="v2" placeholder="Ej: 20">
+            </div>
+
+            <div class="input-group">
+                <label>3. ¿Cuántos días a la semana usas transporte motorizado?</label>
+                <input type="number" id="v3" placeholder="1 a 7">
+            </div>
+
+            <div class="input-group">
+                <label>4. Si usas carro, ¿qué tan eficiente es?</label>
+                <select id="v4">
+                    <option value="1">Moderno / Bien mantenido</option>
+                    <option value="1.3">Modelo antiguo (+10 años)</option>
+                    <option value="0.8">Híbrido / Eléctrico</option>
+                     <option value="0.8">No uso carro</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>5. ¿Evitas las horas de mayor trancón?</label>
+                <select id="v5">
+                    <option value="0">Sí, planeo mis rutas</option>
+                    <option value="0.05">No, siempre me toca tráfico</option>
+                </select>
+            </div>
+
+            <button class="btn-calc-action" onclick="calcAction()">CALCULAR IMPACTO</button>
+        </div>
+
+        <div class="calc-visual">
+            <div id="tree" class="tree-icon">🌳</div>
+            <div id="val" class="score-number">0.0</div>
+            <p><strong>kg de CO₂ mensuales</strong></p>
+            <p id="msg" style="font-size: 0.85rem; color: #666;">Completa el test para conocer cuántos árboles necesitas para compensar.</p>
+        </div>
+    </section>
+
+    <!-- AGREGADO ID A LA SECCIÓN PARA MANIPULARLA CON JS -->
+    <section class="tips-section" id="consejos-mitigacion">
+        <h2 class="tips-title">CONSEJOS DE MITIGACIÓN REALES</h2>
+        <div class="tips-grid">
+            <div class="tip-card tip-1">
+                <strong>¿Vas a salir? ¡Abre Waze!</strong>
+                <small>Evitar solo 10 minutos de trancón "quieto" reduce tu emisión de gases en un 15%. La ruta más rápida es la más verde.</small>
+            </div>
+            <div class="tip-card tip-2">
+                <strong>El Carpool es la clave</strong>
+                <small>Si 3 amigos van en el mismo carro al colegio, están "borrando" 2 carros de la vía de inmediato.</small>
+            </div>
+            <div class="tip-card tip-3">
+                <strong>Baúl ligero = Menos CO2</strong>
+                <small>No cargues cosas pesadas que no uses. Cada 20kg extra en el carro aumentan el consumo de combustible un 1%.</small>
+            </div>
+            <div class="tip-card tip-4">
+                <strong>Apagado Inteligente</strong>
+                <small>Si vas a esperar a alguien por más de 1 minuto, apaga el motor. Gastas menos prendiéndolo de nuevo que dejándolo prendido.</small>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        Ticket-Árbol | Gimnasio Fontana 2024 | Integrando arte y naturaleza.
+    </footer>
+</div>
+
+<script>
+    function calcAction() {
+        const f1 = parseFloat(document.getElementById('v1').value);
+        const f2 = parseFloat(document.getElementById('v2').value) || 0;
+        const f3 = parseFloat(document.getElementById('v3').value) || 0;
+        const f4 = parseFloat(document.getElementById('v4').value);
+        const f5 = parseFloat(document.getElementById('v5').value);
+
+        let total = (f2 * (f1 + f5) * f4 * f3 * 4).toFixed(1);
+        
+        document.getElementById('val').innerText = total;
+        const t = document.getElementById('tree');
+        const m = document.getElementById('msg');
+
+        if (total == 0) {
+            t.innerText = "🌸";
+            m.innerText = "¡Eres aire puro! Tu movilidad no genera carga para el planeta.";
+        } else if (total < 40) {
+            t.innerText = "🌳";
+            m.innerText = "Impacto bajo. Necesitas plantar 1 árbol al año para ser neutral.";
+        } else {
+            t.innerText = "🍂";
+            const arb = Math.ceil(total / 18);
+            m.innerText = "Tu impacto es alto. Deberías plantar " + arb + " árboles este año para compensar.";
+        }
+
+        // --- LÓGICA PARA MOSTRAR LOS TIPS DESPUÉS DEL CÁLCULO ---
+        const seccionTips = document.getElementById('consejos-mitigacion');
+        seccionTips.style.display = 'block';
+
+        // Opcional: Hace un scroll sutil hacia abajo para que el usuario vea que aparecieron los tips
+        setTimeout(() => {
+            seccionTips.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
+    }
+</script>
+
+</body>
+</html>
